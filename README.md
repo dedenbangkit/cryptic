@@ -1,9 +1,10 @@
 # Cryptic
-Vagrant Simple Commands.
+[Vagrant](https://github.com/hashicorp/vagrant) Simple Commands.
 
 ## Installation
 ```
 $ git clone https://github.com/dedenbangkit/cryptic ~/tmp && cd ~/tmp
+// copy cryptic to /usr/local/bin
 $ sh install.sh && cd -
 ```
 
