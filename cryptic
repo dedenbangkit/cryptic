@@ -1,0 +1,35 @@
+#!/bin/bash
+echo ''
+if [ "$1" == "" ] || [ "$1" == "-h" ]
+then
+   echo Available commands: 
+   echo ''
+   echo cryptic -l: list your local vagrant
+   echo cryptic -r: list of running vagrant-box
+   echo cryptic -u [vagrant_name] : run selected vagrant-box and login 
+   echo cryptic -s: setup vagrant-box directory 
+   echo ''
+elif [ "$1" == "--running" ] || [ "$1" == "-r" ]
+then
+   echo '    Running Vagrant:'
+   echo ''
+   vagrant global-status | grep virtualbox | cut -c 1-9 | while read line; do echo $line | nl; done;
+elif [ "$1" == "--login" ] || [ "$1" == "-u" ]
+then
+   if [ "$2" == "" ]
+   then
+        echo '    Invalid Argument, use cryptic -u your_vagrant'
+        echo '    your_vagrant can be found with cryptic -l'
+   else
+        cd ~/vagrant/$2 && vagrant up && vagrant ssh && cd -
+   fi
+elif [ "$1" == "--list" ] || [ "$1" == "-l" ]
+then
+   echo '    Local Vagrant:'
+   echo ''
+   ls ~/vagrant/ | nl 
+else
+   echo command not found 
+   echo use cryptic -h for help 
+fi
+echo ''
